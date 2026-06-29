@@ -1,0 +1,337 @@
+---
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+const labels: Record<string, { title: string; score: string; of: string; correct: string; wrong: string; next: string; finish: string; playAgain: string; funFact: string; result: string; great: string; good: string; tryAgain: string; question: string }> = {
+  en: { title: "Marine Insurance Quiz", score: "Score", of: "of", correct: "Correct!", wrong: "Wrong!", next: "Next Question", finish: "See Results", playAgain: "Play Again", funFact: "Fun Fact", result: "Your Result", great: "Excellent! You're a marine insurance expert!", good: "Good job! You know your maritime basics.", tryAgain: "Keep learning! Marine insurance is a fascinating field.", question: "Question" },
+  es: { title: "Quiz de Seguros Marítimos", score: "Puntuación", of: "de", correct: "¡Correcto!", wrong: "¡Incorrecto!", next: "Siguiente Pregunta", finish: "Ver Resultados", playAgain: "Jugar de Nuevo", funFact: "Dato Curioso", result: "Tu Resultado", great: "¡Excelente! Eres un experto en seguros marítimos!", good: "¡Buen trabajo! Conoces los fundamentos marítimos.", tryAgain: "¡Sigue aprendiendo! Los seguros marítimos son fascinantes.", question: "Pregunta" },
+  zh: { title: "海上保险知识问答", score: "得分", of: "/", correct: "正确！", wrong: "错误！", next: "下一题", finish: "查看结果", playAgain: "再玩一次", funFact: "趣味知识", result: "你的成绩", great: "太棒了！你是海上保险专家！", good: "不错！你了解海事基础知识。", tryAgain: "继续学习！海上保险是个迷人的领域。", question: "题目" },
+  ru: { title: "Викторина по морскому страхованию", score: "Счёт", of: "из", correct: "Верно!", wrong: "Неверно!", next: "Следующий вопрос", finish: "Результаты", playAgain: "Играть снова", funFact: "Интересный факт", result: "Ваш результат", great: "Отлично! Вы эксперт по морскому страхованию!", good: "Хорошо! Вы знаете основы морского дела.", tryAgain: "Продолжайте учиться! Морское страхование — увлекательная сфера.", question: "Вопрос" },
+  pt: { title: "Quiz de Seguros Marítimos", score: "Pontuação", of: "de", correct: "Correto!", wrong: "Errado!", next: "Próxima Pergunta", finish: "Ver Resultados", playAgain: "Jogar Novamente", funFact: "Curiosidade", result: "Seu Resultado", great: "Excelente! Você é um especialista em seguros marítimos!", good: "Bom trabalho! Você conhece os fundamentos marítimos.", tryAgain: "Continue aprendendo! Seguros marítimos é um campo fascinante.", question: "Pergunta" },
+  ar: { title: "اختبار التأمين البحري", score: "النتيجة", of: "من", correct: "صحيح!", wrong: "خطأ!", next: "السؤال التالي", finish: "عرض النتائج", playAgain: "العب مرة أخرى", funFact: "معلومة ممتعة", result: "نتيجتك", great: "ممتاز! أنت خبير في التأمين البحري!", good: "عمل جيد! أنت تعرف أساسيات الشؤون البحرية.", tryAgain: "واصل التعلم! التأمين البحري مجال رائع.", question: "سؤال" }
+};
+
+const l = labels[lang] || labels.en;
+---
+
+<section class="quiz-section" id="marine-quiz">
+  <div class="quiz-header">
+    <h2>{l.title}</h2>
+    <div class="quiz-score" id="quiz-score">{l.score}: 0 {l.of} 12</div>
+  </div>
+  <div class="quiz-body" id="quiz-body">
+    <div class="quiz-question" id="quiz-question"></div>
+    <div class="quiz-options" id="quiz-options"></div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <button class="quiz-btn" id="quiz-next">{l.next}</button>
+  </div>
+  <div class="quiz-result" id="quiz-result" style="display:none;">
+    <div class="result-score" id="result-score"></div>
+    <div class="result-msg" id="result-msg"></div>
+    <button class="quiz-btn" id="quiz-replay">{l.playAgain}</button>
+  </div>
+</section>
+
+<script define:vars={{ lang, l }}>
+const allQuestions = [
+  {
+    q: { en:"What does P&I stand for in marine insurance?", es:"¿Qué significa P&I en seguros marítimos?", zh:"海上保险中P&I代表什么？", ru:"Что означает P&I в морском страховании?", pt:"O que significa P&I em seguros marítimos?", ar:"ماذا يعني P&I في التأمين البحري؟" },
+    options: { en:["Protection & Indemnity","Profit & Investment","Port & Infrastructure","Premium & Insurance"], es:["Protección e Indemnización","Ganancia e Inversión","Puerto e Infraestructura","Prima y Seguro"], zh:["保护与赔偿","利润与投资","港口与基础设施","保费与保险"], ru:["Защита и Возмещение","Прибыль и Инвестиции","Порт и Инфраструктура","Премия и Страхование"], pt:["Proteção e Indenização","Lucro e Investimento","Porto e Infraestrutura","Prêmio e Seguro"], ar:["الحماية والتعويض","الربح والاستثمار","الميناء والبنية التحتية","القسط والتأمين"] },
+    correct: 0,
+    fact: { en:"P&I clubs are mutual insurance associations that cover third-party liabilities for shipowners.", es:"Los clubes P&I son asociaciones de seguros mutuos que cubren responsabilidades de terceros para armadores.", zh:"保赔协会是互助保险协会，为船东提供第三方责任保障。", ru:"Клубы P&I — это взаимные страховые ассоциации, покрывающие ответственность судовладельцев перед третьими лицами.", pt:"Clubes P&I são associações de seguros mútuos que cobrem responsabilidades de terceiros para armadores.", ar:"نوادي الحماية والتعويض هي جمعيات تأمين تبادلي تغطي مسؤوليات الطرف الثالث لمالكي السفن." }
+  },
+  {
+    q: { en:"What is hull insurance?", es:"¿Qué es el seguro de casco?", zh:"什么是船体保险？", ru:"Что такое страхование корпуса?", pt:"O que é seguro de casco?", ar:"ما هو تأمين الهيكل؟" },
+    options: { en:["Coverage for the ship's body and machinery","Coverage for crew members","Coverage for cargo only","Coverage for port fees"], es:["Cobertura del cuerpo y maquinaria del buque","Cobertura para la tripulación","Cobertura solo para carga","Cobertura para tasas portuarias"], zh:["船体和机械的保障","船员保障","仅货物保障","港口费用保障"], ru:["Покрытие корпуса и механизмов судна","Покрытие для экипажа","Покрытие только груза","Покрытие портовых сборов"], pt:["Cobertura do corpo e maquinaria do navio","Cobertura para tripulação","Cobertura apenas para carga","Cobertura para taxas portuárias"], ar:["تغطية هيكل السفينة وآلاتها","تغطية أفراد الطاقم","تغطية البضائع فقط","تغطية رسوم الميناء"] },
+    correct: 0,
+    fact: { en:"Hull insurance is one of the oldest forms of insurance, dating back to maritime trade in ancient Greece.", es:"El seguro de casco es una de las formas más antiguas de seguro, que se remonta al comercio marítimo en la antigua Grecia.", zh:"船体保险是最古老的保险形式之一，可追溯到古希腊的海上贸易。", ru:"Страхование корпуса — одна из старейших форм страхования, восходящая к морской торговле в Древней Греции.", pt:"O seguro de casco é uma das formas mais antigas de seguro, remontando ao comércio marítimo na Grécia antiga.", ar:"تأمين الهيكل هو أحد أقدم أشكال التأمين، ويعود تاريخه إلى التجارة البحرية في اليونان القديمة." }
+  },
+  {
+    q: { en:"Which organization classifies ships for safety standards?", es:"¿Qué organización clasifica buques según estándares de seguridad?", zh:"哪个组织按安全标准对船舶进行分类？", ru:"Какая организация классифицирует суда по стандартам безопасности?", pt:"Qual organização classifica navios segundo padrões de segurança?", ar:"ما المنظمة التي تصنف السفن وفقاً لمعايير السلامة؟" },
+    options: { en:["Lloyd's Register / DNV / Bureau Veritas","United Nations","World Bank","Interpol"], es:["Lloyd's Register / DNV / Bureau Veritas","Naciones Unidas","Banco Mundial","Interpol"], zh:["劳氏船级社 / DNV / 法国船级社","联合国","世界银行","国际刑警组织"], ru:["Lloyd's Register / DNV / Bureau Veritas","ООН","Всемирный банк","Интерпол"], pt:["Lloyd's Register / DNV / Bureau Veritas","Nações Unidas","Banco Mundial","Interpol"], ar:["لويدز ريجستر / DNV / بيرو فيريتاس","الأمم المتحدة","البنك الدولي","الإنتربول"] },
+    correct: 0,
+    fact: { en:"Lloyd's Register was founded in 1760 and is one of the world's leading classification societies.", es:"Lloyd's Register fue fundada en 1760 y es una de las principales sociedades de clasificación del mundo.", zh:"劳氏船级社成立于1760年，是世界领先的船级社之一。", ru:"Lloyd's Register был основан в 1760 году и является одним из ведущих классификационных обществ мира.", pt:"Lloyd's Register foi fundada em 1760 e é uma das principais sociedades de classificação do mundo.", ar:"تأسس لويدز ريجستر في عام 1760 وهو أحد أبرز مجتمعات التصنيف في العالم." }
+  },
+  {
+    q: { en:"What is general average in maritime law?", es:"¿Qué es la avería gruesa en derecho marítimo?", zh:"海商法中的共同海损是什么？", ru:"Что такое общая авария в морском праве?", pt:"O que é avaria grossa no direito marítimo?", ar:"ما هي الخسارة العامة في القانون البحري؟" },
+    options: { en:["Shared loss distributed among all cargo owners","Average insurance premium","Standard shipping route","Mean vessel speed"], es:["Pérdida compartida distribuida entre todos los propietarios de carga","Prima de seguro promedio","Ruta de envío estándar","Velocidad media del buque"], zh:["由所有货主分担的共同损失","平均保险费","标准航运路线","平均船速"], ru:["Общий убыток, распределённый между всеми грузовладельцами","Средняя страховая премия","Стандартный маршрут","Средняя скорость судна"], pt:["Perda compartilhada distribuída entre todos os proprietários de carga","Prêmio médio de seguro","Rota padrão de navegação","Velocidade média da embarcação"], ar:["خسارة مشتركة موزعة بين جميع أصحاب البضائع","متوسط قسط التأمين","مسار شحن قياسي","متوسط سرعة السفينة"] },
+    correct: 0,
+    fact: { en:"General average dates back to the Rhodian maritime law around 800 BC — one of the oldest legal principles still in use.", es:"La avería gruesa se remonta al derecho marítimo de Rodas alrededor del 800 a.C. — uno de los principios legales más antiguos aún en uso.", zh:"共同海损可追溯到公元前800年左右的罗德岛海事法——这是仍在使用的最古老的法律原则之一。", ru:"Общая авария восходит к родосскому морскому праву около 800 года до н.э. — это один из старейших правовых принципов, всё ещё применяемых.", pt:"A avaria grossa remonta ao direito marítimo de Rodes, por volta de 800 a.C. — um dos princípios legais mais antigos ainda em uso.", ar:"تعود الخسارة العامة إلى القانون البحري الرودسي حوالي 800 قبل الميلاد — أحد أقدم المبادئ القانونية المستخدمة حتى اليوم." }
+  },
+  {
+    q: { en:"What is the IMO?", es:"¿Qué es la OMI?", zh:"什么是IMO？", ru:"Что такое ИМО?", pt:"O que é a IMO?", ar:"ما هي المنظمة البحرية الدولية؟" },
+    options: { en:["International Maritime Organization","International Money Order","Insurance Management Office","Intermodal Marine Operations"], es:["Organización Marítima Internacional","Orden Monetario Internacional","Oficina de Gestión de Seguros","Operaciones Marítimas Intermodales"], zh:["国际海事组织","国际汇票","保险管理办公室","多式联运海上作业"], ru:["Международная морская организация","Международный денежный перевод","Офис управления страхованием","Интермодальные морские операции"], pt:["Organização Marítima Internacional","Ordem Monetária Internacional","Escritório de Gestão de Seguros","Operações Marítimas Intermodais"], ar:["المنظمة البحرية الدولية","الحوالة المالية الدولية","مكتب إدارة التأمين","العمليات البحرية متعددة الوسائط"] },
+    correct: 0,
+    fact: { en:"The IMO, headquartered in London, has 175 member states and regulates international shipping.", es:"La OMI, con sede en Londres, tiene 175 estados miembros y regula el transporte marítimo internacional.", zh:"IMO总部位于伦敦，拥有175个成员国，负责监管国际航运。", ru:"ИМО со штаб-квартирой в Лондоне насчитывает 175 государств-членов и регулирует международное судоходство.", pt:"A IMO, sediada em Londres, tem 175 estados membros e regula o transporte marítimo internacional.", ar:"يقع مقر المنظمة البحرية الدولية في لندن، وتضم 175 دولة عضواً وتنظم الشحن الدولي." }
+  },
+  {
+    q: { en:"What does FOB mean in shipping terms?", es:"¿Qué significa FOB en términos de envío?", zh:"航运术语中FOB是什么意思？", ru:"Что означает FOB в терминах доставки?", pt:"O que significa FOB em termos de transporte?", ar:"ماذا يعني FOB في مصطلحات الشحن؟" },
+    options: { en:["Free On Board","Freight On Behalf","Forward Operating Base","Full Ocean Bill"], es:["Libre a bordo","Flete en nombre de","Base de operaciones avanzada","Conocimiento oceánico completo"], zh:["船上交货","代理运费","前沿作战基地","全程海运提单"], ru:["Франко-борт","Фрахт от имени","Передовая оперативная база","Полный океанский коносамент"], pt:["Livre a bordo","Frete em nome de","Base de operações avançada","Conhecimento oceânico completo"], ar:["تسليم على متن السفينة","شحن بالنيابة","قاعدة عمليات أمامية","بوليصة شحن بحري كاملة"] },
+    correct: 0,
+    fact: { en:"Under FOB terms, risk transfers from seller to buyer once goods are loaded onto the vessel.", es:"Bajo términos FOB, el riesgo se transfiere del vendedor al comprador una vez que la mercancía se carga en el buque.", zh:"在FOB条款下，货物装上船后风险从卖方转移给买方。", ru:"По условиям FOB риск переходит от продавца к покупателю после погрузки товара на судно.", pt:"Sob termos FOB, o risco transfere-se do vendedor ao comprador uma vez que os bens são carregados no navio.", ar:"بموجب شروط FOB، ينتقل الخطر من البائع إلى المشتري بمجرد تحميل البضائع على السفينة." }
+  },
+  {
+    q: { en:"What is a charter party?", es:"¿Qué es un contrato de fletamento?", zh:"什么是租船合同？", ru:"Что такое чартер-партия?", pt:"O que é um contrato de afretamento?", ar:"ما هو عقد استئجار السفينة؟" },
+    options: { en:["A contract for the hire of a ship","A celebration on board","A type of cargo classification","A naval training exercise"], es:["Un contrato de alquiler de buque","Una celebración a bordo","Un tipo de clasificación de carga","Un ejercicio de entrenamiento naval"], zh:["船舶租赁合同","船上庆典","一种货物分类","海军训练演习"], ru:["Договор фрахтования судна","Праздник на борту","Тип классификации грузов","Военно-морское учение"], pt:["Um contrato de aluguel de navio","Uma celebração a bordo","Um tipo de classificação de carga","Um exercício de treinamento naval"], ar:["عقد استئجار سفينة","احتفال على متن السفينة","نوع من تصنيف البضائع","تمرين تدريب بحري"] },
+    correct: 0,
+    fact: { en:"Charter parties can be voyage charters (single trip) or time charters (specific period).", es:"Los fletamentos pueden ser por viaje (un solo trayecto) o por tiempo (periodo específico).", zh:"租船合同可以是航次租船（单次航行）或期租（特定期间）。", ru:"Чартер-партии бывают рейсовыми (один рейс) или тайм-чартерами (на определённый срок).", pt:"Contratos de afretamento podem ser por viagem (uma viagem) ou por tempo (período específico).", ar:"يمكن أن تكون عقود الاستئجار لرحلة واحدة أو لفترة زمنية محددة." }
+  },
+  {
+    q: { en:"What is marine cargo insurance?", es:"¿Qué es el seguro de carga marítima?", zh:"什么是海上货物保险？", ru:"Что такое морское грузовое страхование?", pt:"O que é seguro de carga marítima?", ar:"ما هو تأمين البضائع البحرية؟" },
+    options: { en:["Protection for goods during transit by sea","Insurance for the ship only","Crew life insurance","Port facility coverage"], es:["Protección para mercancías en tránsito marítimo","Seguro solo para el buque","Seguro de vida para la tripulación","Cobertura de instalaciones portuarias"], zh:["海运过程中货物的保障","仅船舶保险","船员人寿保险","港口设施保障"], ru:["Защита грузов при морской перевозке","Страхование только судна","Страхование жизни экипажа","Покрытие портовых сооружений"], pt:["Proteção para mercadorias em trânsito marítimo","Seguro apenas para o navio","Seguro de vida da tripulação","Cobertura de instalações portuárias"], ar:["حماية البضائع أثناء النقل البحري","تأمين السفينة فقط","تأمين حياة الطاقم","تغطية مرافق الميناء"] },
+    correct: 0,
+    fact: { en:"Marine cargo insurance typically covers risks like sinking, fire, piracy, and weather damage.", es:"El seguro de carga marítima típicamente cubre riesgos como hundimiento, incendio, piratería y daños climáticos.", zh:"海上货物保险通常涵盖沉没、火灾、海盗和天气损害等风险。", ru:"Морское грузовое страхование обычно покрывает риски затопления, пожара, пиратства и погодных повреждений.", pt:"O seguro de carga marítima tipicamente cobre riscos como naufrágio, incêndio, pirataria e danos climáticos.", ar:"يغطي تأمين البضائع البحرية عادةً مخاطر مثل الغرق والحريق والقرصنة وأضرار الطقس." }
+  },
+  {
+    q: { en:"What is salvage in maritime terms?", es:"¿Qué es el salvamento en términos marítimos?", zh:"海事术语中的救助是什么？", ru:"Что такое спасание в морских терминах?", pt:"O que é salvamento em termos marítimos?", ar:"ما هو الإنقاذ في المصطلحات البحرية؟" },
+    options: { en:["Rescue of a ship or cargo from peril at sea","Selling a damaged vessel","Scrapping old ships","Collecting ocean debris"], es:["Rescate de un buque o carga en peligro en el mar","Venta de un buque dañado","Desguace de buques viejos","Recolección de desechos oceánicos"], zh:["从海上危险中救助船舶或货物","出售受损船舶","拆解旧船","收集海洋碎片"], ru:["Спасение судна или груза от опасности в море","Продажа повреждённого судна","Утилизация старых судов","Сбор океанского мусора"], pt:["Resgate de navio ou carga em perigo no mar","Venda de embarcação danificada","Desmonte de navios velhos","Coleta de detritos oceânicos"], ar:["إنقاذ سفينة أو بضائع من خطر في البحر","بيع سفينة متضررة","تفكيك السفن القديمة","جمع الحطام البحري"] },
+    correct: 0,
+    fact: { en:"Salvors are entitled to a reward proportional to the value of the property saved — this is called a salvage award.", es:"Los salvadores tienen derecho a una recompensa proporcional al valor de la propiedad salvada — esto se llama premio de salvamento.", zh:"救助者有权获得与所救财产价值成比例的报酬——这被称为救助报酬。", ru:"Спасатели имеют право на вознаграждение, пропорциональное стоимости спасённого имущества — это называется спасательной наградой.", pt:"Os salvadores têm direito a uma recompensa proporcional ao valor da propriedade salva — isso é chamado de prêmio de salvamento.", ar:"يحق للمنقذين الحصول على مكافأة تتناسب مع قيمة الممتلكات المنقذة — وهذا ما يسمى بجائزة الإنقاذ." }
+  },
+  {
+    q: { en:"What does tonnage refer to in shipping?", es:"¿A qué se refiere el tonelaje en el transporte marítimo?", zh:"航运中的吨位指的是什么？", ru:"Что означает тоннаж в судоходстве?", pt:"A que se refere a tonelagem no transporte marítimo?", ar:"إلام يشير مصطلح الحمولة في الشحن؟" },
+    options: { en:["A ship's carrying capacity or internal volume","The weight of the crew","The number of containers","The fuel capacity"], es:["Capacidad de carga o volumen interno del buque","El peso de la tripulación","El número de contenedores","La capacidad de combustible"], zh:["船舶的载重能力或内部容积","船员重量","集装箱数量","燃料容量"], ru:["Грузоподъёмность или внутренний объём судна","Вес экипажа","Количество контейнеров","Топливная ёмкость"], pt:["Capacidade de carga ou volume interno do navio","O peso da tripulação","O número de contêineres","A capacidade de combustível"], ar:["قدرة حمولة السفينة أو حجمها الداخلي","وزن الطاقم","عدد الحاويات","سعة الوقود"] },
+    correct: 0,
+    fact: { en:"Gross tonnage (GT) measures a ship's overall internal volume and is used for safety regulations and port dues.", es:"El tonelaje bruto (GT) mide el volumen interno total del buque y se usa para regulaciones de seguridad y tasas portuarias.", zh:"总吨位（GT）衡量船舶的整体内部容积，用于安全法规和港口费用。", ru:"Валовая вместимость (GT) измеряет общий внутренний объём судна и используется для правил безопасности и портовых сборов.", pt:"A tonelagem bruta (GT) mede o volume interno total do navio e é usada para regulamentações de segurança e taxas portuárias.", ar:"الحمولة الإجمالية (GT) تقيس الحجم الداخلي الكلي للسفينة وتُستخدم للوائح السلامة ورسوم الموانئ." }
+  },
+  {
+    q: { en:"What is a bill of lading?", es:"¿Qué es un conocimiento de embarque?", zh:"什么是提单？", ru:"Что такое коносамент?", pt:"O que é um conhecimento de embarque?", ar:"ما هي بوليصة الشحن؟" },
+    options: { en:["A document of title for shipped goods","A ship's fuel receipt","A crew employment contract","An invoice for port services"], es:["Documento de título para mercancías embarcadas","Recibo de combustible del buque","Contrato de empleo de la tripulación","Factura por servicios portuarios"], zh:["运输货物的权利凭证","船舶燃油收据","船员雇佣合同","港口服务发票"], ru:["Документ на право собственности на перевозимый груз","Квитанция на топливо судна","Трудовой договор экипажа","Счёт за портовые услуги"], pt:["Documento de título para mercadorias embarcadas","Recibo de combustível do navio","Contrato de emprego da tripulação","Fatura por serviços portuários"], ar:["وثيقة ملكية للبضائع المشحونة","إيصال وقود السفينة","عقد توظيف الطاقم","فاتورة خدمات الميناء"] },
+    correct: 0,
+    fact: { en:"A bill of lading serves three purposes: receipt of goods, contract of carriage, and document of title.", es:"El conocimiento de embarque cumple tres propósitos: recibo de mercancías, contrato de transporte y documento de título.", zh:"提单有三个功能：货物收据、运输合同和权利凭证。", ru:"Коносамент выполняет три функции: расписка в получении груза, договор перевозки и документ на право собственности.", pt:"O conhecimento de embarque serve três propósitos: recibo de mercadorias, contrato de transporte e documento de título.", ar:"تخدم بوليصة الشحن ثلاثة أغراض: إيصال استلام البضائع وعقد النقل ووثيقة الملكية." }
+  },
+  {
+    q: { en:"What is demurrage?", es:"¿Qué es la demora (demurrage)?", zh:"什么是滞期费？", ru:"Что такое демерредж?", pt:"O que é demurrage (sobrestadia)?", ar:"ما هي رسوم التأخير (demurrage)؟" },
+    options: { en:["A fee charged for delayed loading or unloading","A type of hull damage","A shipping route tax","A crew overtime payment"], es:["Tarifa por retraso en carga o descarga","Un tipo de daño al casco","Un impuesto de ruta marítima","Pago de horas extra de la tripulación"], zh:["因延迟装卸而收取的费用","一种船体损坏","航运路线税","船员加班费"], ru:["Плата за задержку погрузки или разгрузки","Тип повреждения корпуса","Налог на судоходный маршрут","Оплата сверхурочной работы экипажа"], pt:["Taxa cobrada por atraso no carregamento ou descarregamento","Um tipo de dano ao casco","Um imposto de rota marítima","Pagamento de horas extras da tripulação"], ar:["رسوم تُفرض على تأخير التحميل أو التفريغ","نوع من أضرار الهيكل","ضريبة مسار الشحن","دفع ساعات إضافية للطاقم"] },
+    correct: 0,
+    fact: { en:"Demurrage can cost thousands of dollars per day and is a major concern in bulk and tanker shipping.", es:"La demora puede costar miles de dólares por día y es una preocupación importante en el transporte de graneles y tanqueros.", zh:"滞期费每天可达数千美元，是散货和油轮运输的主要关注点。", ru:"Демерредж может стоить тысячи долларов в день и является серьёзной проблемой в перевозке навалочных грузов и танкерах.", pt:"O demurrage pode custar milhares de dólares por dia e é uma grande preocupação no transporte de granéis e tanques.", ar:"يمكن أن تكلف رسوم التأخير آلاف الدولارات يومياً وهي مصدر قلق كبير في شحن البضائع السائبة والناقلات." }
+  },
+  {
+    q: { en:"What is the Plimsoll line on a ship?", es:"¿Qué es la línea de Plimsoll en un buque?", zh:"船上的载重线是什么？", ru:"Что такое марка Плимсолла на судне?", pt:"O que é a linha de Plimsoll em um navio?", ar:"ما هو خط بليمسول على السفينة؟" },
+    options: { en:["A mark showing the maximum safe draft","The ship's name plate","A decorative line on the hull","The waterline at launch"], es:["Una marca que indica el calado seguro máximo","La placa del nombre del buque","Una línea decorativa en el casco","La línea de flotación en el lanzamiento"], zh:["显示最大安全吃水的标记","船名牌","船体上的装饰线","下水时的水线"], ru:["Отметка максимальной безопасной осадки","Табличка с названием судна","Декоративная линия на корпусе","Ватерлиния при спуске на воду"], pt:["Uma marca indicando o calado seguro máximo","A placa do nome do navio","Uma linha decorativa no casco","A linha d'água no lançamento"], ar:["علامة تُظهر أقصى غاطس آمن","لوحة اسم السفينة","خط زخرفي على الهيكل","خط الماء عند الإطلاق"] },
+    correct: 0,
+    fact: { en:"Named after Samuel Plimsoll, who campaigned in the 1870s to prevent overloading of cargo ships.", es:"Nombrada en honor a Samuel Plimsoll, quien hizo campaña en la década de 1870 para prevenir la sobrecarga de buques.", zh:"以塞缪尔·普利姆索尔命名，他在19世纪70年代倡导防止货船超载。", ru:"Названа в честь Сэмюэла Плимсолла, который в 1870-х годах боролся против перегрузки грузовых судов.", pt:"Nomeada em homenagem a Samuel Plimsoll, que fez campanha na década de 1870 para prevenir a sobrecarga de navios.", ar:"سُميت على اسم صامويل بليمسول الذي قاد حملة في سبعينيات القرن التاسع عشر لمنع تحميل السفن فوق طاقتها." }
+  },
+  {
+    q: { en:"What is a maritime lien?", es:"¿Qué es un privilegio marítimo?", zh:"什么是海事留置权？", ru:"Что такое морское залоговое право?", pt:"O que é um privilégio marítimo?", ar:"ما هو الامتياز البحري؟" },
+    options: { en:["A claim against a vessel for unpaid debts or damages","A ship's operating license","A type of anchor","A navigation permit"], es:["Un reclamo contra un buque por deudas o daños impagos","Una licencia de operación del buque","Un tipo de ancla","Un permiso de navegación"], zh:["因未偿债务或损害对船舶提出的索赔","船舶营运许可证","一种锚","航行许可证"], ru:["Претензия к судну за неоплаченные долги или ущерб","Эксплуатационная лицензия судна","Тип якоря","Разрешение на навигацию"], pt:["Uma reivindicação contra uma embarcação por dívidas ou danos não pagos","Uma licença de operação do navio","Um tipo de âncora","Uma permissão de navegação"], ar:["مطالبة ضد سفينة بسبب ديون أو أضرار غير مدفوعة","رخصة تشغيل السفينة","نوع من المراسي","تصريح ملاحة"] },
+    correct: 0,
+    fact: { en:"Maritime liens attach to the vessel itself, not just the owner — so the ship can be arrested even if ownership changes.", es:"Los privilegios marítimos se adhieren al buque mismo, no solo al propietario — el buque puede ser arrestado aunque cambie de dueño.", zh:"海事留置权附着于船舶本身而非船东——因此即使所有权变更，船舶也可能被扣押。", ru:"Морское залоговое право распространяется на само судно, а не только на владельца — судно может быть арестовано даже при смене собственника.", pt:"Privilégios marítimos se vinculam à embarcação em si, não apenas ao proprietário — o navio pode ser arrestado mesmo com mudança de propriedade.", ar:"الامتيازات البحرية تلتصق بالسفينة نفسها وليس فقط بالمالك — لذا يمكن احتجاز السفينة حتى لو تغيرت الملكية." }
+  },
+  {
+    q: { en:"What does SOLAS stand for?", es:"¿Qué significa SOLAS?", zh:"SOLAS代表什么？", ru:"Что означает SOLAS?", pt:"O que significa SOLAS?", ar:"ماذا يعني SOLAS؟" },
+    options: { en:["Safety of Life at Sea","Standard Operations for Loading and Shipping","System of Liability and Safety","Survey of Loaded Assets at Sea"], es:["Seguridad de la Vida en el Mar","Operaciones estándar de carga y envío","Sistema de responsabilidad y seguridad","Inspección de activos cargados en el mar"], zh:["海上人命安全","装载和运输标准操作","责任与安全体系","海上装载资产检验"], ru:["Охрана человеческой жизни на море","Стандартные операции погрузки и перевозки","Система ответственности и безопасности","Обследование загруженных активов в море"], pt:["Segurança da Vida no Mar","Operações padrão de carregamento e transporte","Sistema de responsabilidade e segurança","Inspeção de ativos carregados no mar"], ar:["سلامة الأرواح في البحر","العمليات القياسية للتحميل والشحن","نظام المسؤولية والسلامة","مسح الأصول المحملة في البحر"] },
+    correct: 0,
+    fact: { en:"SOLAS was first adopted in 1914 in response to the Titanic disaster and remains the most important maritime safety treaty.", es:"SOLAS fue adoptado por primera vez en 1914 en respuesta al desastre del Titanic y sigue siendo el tratado de seguridad marítima más importante.", zh:"SOLAS于1914年在泰坦尼克号灾难后首次通过，至今仍是最重要的海事安全公约。", ru:"SOLAS был впервые принят в 1914 году после катастрофы Титаника и остаётся важнейшим договором о морской безопасности.", pt:"O SOLAS foi adotado pela primeira vez em 1914 em resposta ao desastre do Titanic e continua sendo o mais importante tratado de segurança marítima.", ar:"تم اعتماد SOLAS لأول مرة في عام 1914 استجابة لكارثة تيتانيك ولا يزال أهم معاهدة للسلامة البحرية." }
+  },
+  {
+    q: { en:"What is a marine warranty survey?", es:"¿Qué es una inspección de garantía marítima?", zh:"什么是海事保证检验？", ru:"Что такое гарантийный морской осмотр?", pt:"O que é uma vistoria de garantia marítima?", ar:"ما هو مسح الضمان البحري؟" },
+    options: { en:["An independent assessment required by insurers before high-risk operations","A manufacturer's guarantee on a vessel","A routine annual inspection","A certificate of seaworthiness"], es:["Evaluación independiente requerida por aseguradoras antes de operaciones de alto riesgo","Garantía del fabricante de un buque","Inspección anual rutinaria","Certificado de navegabilidad"], zh:["保险公司在高风险作业前要求的独立评估","船舶制造商的保证","常规年度检查","适航证书"], ru:["Независимая оценка, требуемая страховщиками перед высокорисковыми операциями","Гарантия производителя на судно","Плановая ежегодная инспекция","Свидетельство о мореходности"], pt:["Avaliação independente exigida por seguradoras antes de operações de alto risco","Garantia do fabricante da embarcação","Inspeção anual de rotina","Certificado de navegabilidade"], ar:["تقييم مستقل تطلبه شركات التأمين قبل العمليات عالية المخاطر","ضمان الشركة المصنعة للسفينة","فحص سنوي روتيني","شهادة صلاحية الإبحار"] },
+    correct: 0,
+    fact: { en:"Marine warranty surveyors assess everything from weather windows to vessel stability before approving offshore lifts and tows.", es:"Los inspectores de garantía marítima evalúan desde ventanas meteorológicas hasta la estabilidad del buque antes de aprobar izajes y remolques offshore.", zh:"海事保证检验员在批准海上吊装和拖曳之前，会评估天气窗口到船舶稳定性的一切因素。", ru:"Гарантийные морские сюрвейеры оценивают всё — от погодных окон до остойчивости судна — перед одобрением морских подъёмов и буксировок.", pt:"Vistoriadores de garantia marítima avaliam desde janelas climáticas até a estabilidade da embarcação antes de aprovar içamentos e reboques offshore.", ar:"يقيّم مفتشو الضمان البحري كل شيء من نوافذ الطقس إلى استقرار السفينة قبل الموافقة على عمليات الرفع والسحب البحرية." }
+  }
+];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const questions = shuffle(allQuestions).slice(0, 12);
+let current = 0;
+let score = 0;
+let answered = false;
+
+const qEl = document.getElementById('quiz-question');
+const optEl = document.getElementById('quiz-options');
+const fbEl = document.getElementById('quiz-feedback');
+const nextBtn = document.getElementById('quiz-next');
+const scoreEl = document.getElementById('quiz-score');
+const bodyEl = document.getElementById('quiz-body');
+const resultEl = document.getElementById('quiz-result');
+const resultScore = document.getElementById('result-score');
+const resultMsg = document.getElementById('result-msg');
+const replayBtn = document.getElementById('quiz-replay');
+
+function renderQuestion() {
+  const q = questions[current];
+  const currLang = lang || 'en';
+  qEl.innerHTML = `<span class="q-num">${l.question} ${current + 1} ${l.of} 12</span><br>${q.q[currLang] || q.q.en}`;
+  optEl.innerHTML = '';
+  fbEl.innerHTML = '';
+  fbEl.className = 'quiz-feedback';
+  answered = false;
+  nextBtn.style.display = 'none';
+
+  const opts = q.options[currLang] || q.options.en;
+  opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => handleAnswer(i, q, currLang));
+    optEl.appendChild(btn);
+  });
+}
+
+function handleAnswer(idx, q, currLang) {
+  if (answered) return;
+  answered = true;
+  const btns = optEl.querySelectorAll('.quiz-option');
+  btns.forEach((btn, i) => {
+    if (i === q.correct) btn.classList.add('correct');
+    else if (i === idx) btn.classList.add('wrong');
+    btn.disabled = true;
+  });
+  if (idx === q.correct) {
+    score++;
+    fbEl.innerHTML = `<div class="fb-correct">${l.correct}</div><div class="fb-fact"><strong>${l.funFact}:</strong> ${q.fact[currLang] || q.fact.en}</div>`;
+    fbEl.className = 'quiz-feedback show-correct';
+  } else {
+    fbEl.innerHTML = `<div class="fb-wrong">${l.wrong}</div><div class="fb-fact"><strong>${l.funFact}:</strong> ${q.fact[currLang] || q.fact.en}</div>`;
+    fbEl.className = 'quiz-feedback show-wrong';
+  }
+  scoreEl.textContent = `${l.score}: ${score} ${l.of} 12`;
+  nextBtn.style.display = 'inline-block';
+  nextBtn.textContent = current < 11 ? l.next : l.finish;
+}
+
+nextBtn.addEventListener('click', () => {
+  current++;
+  if (current >= 12) {
+    bodyEl.style.display = 'none';
+    resultEl.style.display = 'block';
+    resultScore.textContent = `${score} ${l.of} 12`;
+    if (score >= 10) resultMsg.textContent = l.great;
+    else if (score >= 6) resultMsg.textContent = l.good;
+    else resultMsg.textContent = l.tryAgain;
+  } else {
+    renderQuestion();
+  }
+});
+
+replayBtn.addEventListener('click', () => { location.reload(); });
+
+renderQuestion();
+</script>
+
+<style>
+  .quiz-section {
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.15) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 40px 0;
+    backdrop-filter: blur(10px);
+  }
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .quiz-header h2 {
+    font-size: 1.5rem;
+    color: #93c5fd;
+    margin: 0;
+  }
+  .quiz-score {
+    background: rgba(30, 64, 175, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: #93c5fd;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .quiz-question {
+    font-size: 1.15rem;
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .q-num {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 640px) {
+    .quiz-options { grid-template-columns: 1fr; }
+  }
+  .quiz-option {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #e2e8f0;
+    padding: 14px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: left;
+    transition: all 0.2s;
+  }
+  .quiz-option:hover:not(:disabled) {
+    background: rgba(30, 64, 175, 0.4);
+    border-color: #3b82f6;
+  }
+  .quiz-option.correct {
+    background: rgba(34, 197, 94, 0.2) !important;
+    border-color: #22c55e !important;
+    color: #86efac;
+  }
+  .quiz-option.wrong {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border-color: #ef4444 !important;
+    color: #fca5a5;
+  }
+  .quiz-option:disabled { cursor: default; opacity: 0.8; }
+  .quiz-feedback {
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 10px;
+    display: none;
+  }
+  .quiz-feedback.show-correct, .quiz-feedback.show-wrong { display: block; }
+  .quiz-feedback.show-correct { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); }
+  .quiz-feedback.show-wrong { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); }
+  .fb-correct { color: #86efac; font-weight: 700; margin-bottom: 8px; font-size: 1.1rem; }
+  .fb-wrong { color: #fca5a5; font-weight: 700; margin-bottom: 8px; font-size: 1.1rem; }
+  .fb-fact { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+  .quiz-btn {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.2s;
+  }
+  .quiz-btn:hover { opacity: 0.9; }
+  .quiz-result { text-align: center; padding: 40px 0; }
+  .result-score {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  .result-msg { color: #94a3b8; font-size: 1.1rem; margin-bottom: 24px; }
+  #quiz-replay { display: inline-block; }
+</style>

@@ -1,66 +1,77 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MarineQuiz from '../../components/MarineQuiz.astro';
+import WeeklyNews from '../../components/WeeklyNews.astro';
 ---
 
 <BaseLayout
-  title="Maryna Risk & Insurance | Seguros Estruturados e Cobertura de Riscos Marítimos"
-  description="Soluções de seguros estruturados e cobertura de riscos para embarcações, registros offshore e operações B2B internacionais. Registrada na República de Kiribati."
+  title="Maryna Risk & Insurance | Cobertura Marítima Estruturada para Embarcações e Offshore"
+  description="Soluções de seguros B2B para embarcações, registros offshore e proteção de ativos internacionais. Cobertura marítima estruturada da Maryna Risk & Insurance."
   lang="pt"
 >
   <Fragment slot="logo">Maryna Risk</Fragment>
   <Fragment slot="footer-name">Maryna Risk & Insurance – Registrada na República de Kiribati</Fragment>
 
   <section class="hero">
-    <h1>Maryna Risk & Insurance</h1>
-    <p class="tagline">Seguros Estruturados e Cobertura de Riscos</p>
-    <p>Soluções para embarcações, registros offshore e proteção de ativos internacionais. Apenas B2B.</p>
+    <h1>Maryna Risk & Insurance<span class="gradient-text">Cobertura Marítima Estruturada</span></h1>
+    <p class="lead">Soluções de seguros B2B para embarcações, registros offshore e proteção de ativos internacionais.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-value">Apenas B2B</div><div class="stat-label">Clientes Comerciais</div></div>
+      <div class="hero-stat"><div class="stat-value">Cobertura Global</div><div class="stat-label">Multi-Jurisdição</div></div>
+      <div class="hero-stat"><div class="stat-value">Rede de Parceiros</div><div class="stat-label">Clubes P&I e Seguradoras</div></div>
+    </div>
   </section>
 
-  <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
+  <div class="content-area">
+    <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
 
-  <div class="card-grid">
-    <article class="card">
-      <h2>Foco Marítimo</h2>
-      <p>Seguros para embarcações comerciais e operações marítimas. Cobertura para navios comerciais, barcos de trabalho, embarcações de serviço, navios de apoio offshore e iates registrados para uso comercial.</p>
-    </article>
-    <article class="card">
-      <h2>Pronto para Offshore</h2>
-      <p>Suporte para registro offshore e estruturas de cobertura conformes. Casco e máquinas, P&I através de parceiros e cobertura de riscos operacionais.</p>
-    </article>
-    <article class="card">
-      <h2>Alcance Internacional</h2>
-      <p>Cobertura para ativos e equipamentos operando em múltiplas jurisdições. Seguros de ativos industriais e internacionais para operações transfronteiriças complexas.</p>
-    </article>
-    <article class="card">
-      <h2>Apenas B2B</h2>
-      <p>Soluções projetadas exclusivamente para empresas e operadores. Estruturas baseadas em parceiros sem produtos pessoais ou de consumo.</p>
-    </article>
-    <article class="card">
-      <h2>Ativos Cobertos</h2>
-      <p>Navios comerciais, barcos de trabalho, embarcações de serviço, navios de apoio offshore, iates registrados para uso comercial e equipamentos industriais internacionais.</p>
-    </article>
-    <article class="card">
-      <h2>Gestão de Riscos</h2>
-      <p>Avaliação abrangente de riscos e cobertura estruturada para riscos complexos não pessoais nos setores marítimo e industrial.</p>
-    </article>
+    <MarineQuiz lang="pt" />
+
+    <div class="card-grid">
+      <article class="card">
+        <span class="card-icon">🚢</span>
+        <h2>Foco Marítimo</h2>
+        <p>Seguros para embarcações comerciais e operações marítimas. Cobertura para navios comerciais, barcos de trabalho, embarcações de serviço, navios de apoio offshore e iates registrados para uso comercial.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">⚓</span>
+        <h2>Pronto para Offshore</h2>
+        <p>Suporte para registro offshore e estruturas de cobertura conformes. Casco e máquinas, P&I através de parceiros e cobertura de riscos operacionais.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🌊</span>
+        <h2>Alcance Internacional</h2>
+        <p>Cobertura para ativos e equipamentos operando em múltiplas jurisdições. Seguros de ativos industriais e internacionais para operações transfronteiriças complexas.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🏢</span>
+        <h2>Apenas B2B</h2>
+        <p>Soluções projetadas exclusivamente para empresas e operadores. Estruturas baseadas em parceiros sem produtos pessoais ou de consumo.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">📋</span>
+        <h2>Ativos Cobertos</h2>
+        <p>Navios comerciais, barcos de trabalho, embarcações de serviço, navios de apoio offshore, iates registrados para uso comercial e equipamentos industriais internacionais.</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🛡️</span>
+        <h2>Gestão de Riscos</h2>
+        <p>Avaliação abrangente de riscos e cobertura estruturada para riscos complexos não pessoais nos setores marítimo e industrial.</p>
+      </article>
+    </div>
+
+    <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
+
+    <section class="registration-info">
+      <h2>Registro e Informações Legais</h2>
+      <p><strong>Número de Registro:</strong> CP-000030</p>
+      <p><strong>Número da Licença:</strong> KBN-80-000001</p>
+      <p><strong>Escritório Registrado:</strong> Central Park, Tarawa, República de Kiribati</p>
+      <p><strong>Endereço:</strong> Malecón, Manzanillo, Cuba</p>
+    </section>
+
+    <WeeklyNews lang="pt" />
+
+    <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
   </div>
-
-  <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
-
-  <section class="registration-info">
-    <h2>Registro e Informações Legais</h2>
-    <p><strong>Número de Registro:</strong> CP-000030</p>
-    <p><strong>Número da Licença:</strong> KBN-80-000001</p>
-    <p><strong>Escritório Registrado:</strong> Central Park, Tarawa, República de Kiribati</p>
-    <p><strong>Endereço:</strong> Malecón, Manzanillo, Cuba</p>
-  </section>
-
-  <div class="ad-slot">Espaço Publicitário - Google AdSense</div>
 </BaseLayout>
-
-<style>
-  .tagline { font-size: 1.4rem; font-weight: 600; opacity: 1; margin-bottom: 8px; }
-  .registration-info { background: white; border-radius: 8px; padding: 32px; margin-top: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
-  .registration-info h2 { margin-bottom: 16px; color: #1a1a2e; }
-  .registration-info p { margin: 6px 0; color: #555; }
-</style>

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "date": "2026-06-28",
+    "en": { "title": "Global P&I Clubs Report Record Low Claims for Q2 2026", "summary": "The International Group of P&I Clubs released quarterly data showing a significant decline in marine liability claims, attributed to improved safety standards and advanced vessel monitoring systems." },
+    "es": { "title": "Clubes P&I globales reportan mínimo histórico de reclamaciones en Q2 2026", "summary": "El Grupo Internacional de Clubes P&I publicó datos trimestrales que muestran una disminución significativa en reclamaciones de responsabilidad marítima, atribuida a mejores estándares de seguridad y sistemas avanzados de monitoreo de buques." },
+    "zh": { "title": "全球保赔协会报告2026年第二季度索赔创历史新低", "summary": "国际保赔协会集团发布季度数据，显示海上责任索赔显著下降，归因于安全标准的改善和先进的船舶监控系统。" },
+    "ru": { "title": "Глобальные клубы P&I сообщают о рекордно низких претензиях за Q2 2026", "summary": "Международная группа клубов P&I опубликовала квартальные данные, показывающие значительное снижение претензий по морской ответственности благодаря улучшенным стандартам безопасности и передовым системам мониторинга судов." },
+    "pt": { "title": "Clubes P&I globais reportam mínimo recorde de sinistros no Q2 2026", "summary": "O Grupo Internacional de Clubes P&I divulgou dados trimestrais mostrando declínio significativo nos sinistros de responsabilidade marítima, atribuído a melhores padrões de segurança e sistemas avançados de monitoramento de embarcações." },
+    "ar": { "title": "نوادي الحماية والتعويض العالمية تسجل أدنى مستوى للمطالبات في الربع الثاني 2026", "summary": "أصدرت المجموعة الدولية لنوادي الحماية والتعويض بيانات ربع سنوية تُظهر انخفاضاً كبيراً في مطالبات المسؤولية البحرية، ويُعزى ذلك إلى تحسين معايير السلامة وأنظمة مراقبة السفن المتقدمة." }
+  },
+  {
+    "id": 2,
+    "date": "2026-06-25",
+    "en": { "title": "IMO Adopts New Regulations for Autonomous Vessel Insurance", "summary": "The International Maritime Organization has approved a framework requiring specialized insurance coverage for autonomous and remotely operated commercial vessels, effective January 2027." },
+    "es": { "title": "La OMI adopta nuevas regulaciones para seguros de buques autónomos", "summary": "La Organización Marítima Internacional ha aprobado un marco que exige cobertura de seguros especializada para buques comerciales autónomos y operados remotamente, vigente desde enero de 2027." },
+    "zh": { "title": "国际海事组织通过自主船舶保险新规", "summary": "国际海事组织已批准一项框架，要求为自主和远程操作的商业船舶提供专门的保险覆盖，自2027年1月起生效。" },
+    "ru": { "title": "ИМО принимает новые правила страхования автономных судов", "summary": "Международная морская организация утвердила рамочные правила, требующие специализированного страхового покрытия для автономных и дистанционно управляемых коммерческих судов, вступающие в силу с января 2027 года." },
+    "pt": { "title": "IMO adota novas regulamentações para seguros de embarcações autônomas", "summary": "A Organização Marítima Internacional aprovou uma estrutura exigindo cobertura de seguro especializada para embarcações comerciais autônomas e operadas remotamente, em vigor a partir de janeiro de 2027." },
+    "ar": { "title": "المنظمة البحرية الدولية تعتمد لوائح جديدة لتأمين السفن المستقلة", "summary": "وافقت المنظمة البحرية الدولية على إطار عمل يتطلب تغطية تأمينية متخصصة للسفن التجارية المستقلة والمُشغلة عن بُعد، يدخل حيز التنفيذ في يناير 2027." }
+  },
+  {
+    "id": 3,
+    "date": "2026-06-22",
+    "en": { "title": "Offshore Energy Insurance Premiums Rise Amid Expanding Deep-Water Operations", "summary": "Insurers are adjusting premiums for offshore energy installations as deep-water exploration reaches new depths, increasing the complexity of risk assessment for platforms and support vessels." },
+    "es": { "title": "Primas de seguros de energía offshore suben ante la expansión de operaciones en aguas profundas", "summary": "Las aseguradoras ajustan las primas para instalaciones de energía offshore a medida que la exploración en aguas profundas alcanza nuevas profundidades, aumentando la complejidad de la evaluación de riesgos." },
+    "zh": { "title": "深水作业扩展推动海上能源保险费率上涨", "summary": "随着深水勘探达到新深度，保险公司正在调整海上能源设施的保费，增加了平台和支援船舶风险评估的复杂性。" },
+    "ru": { "title": "Премии по страхованию морской энергетики растут на фоне расширения глубоководных операций", "summary": "Страховщики корректируют премии для морских энергетических установок по мере того, как глубоководная разведка достигает новых глубин, усложняя оценку рисков для платформ и судов обеспечения." },
+    "pt": { "title": "Prêmios de seguros de energia offshore sobem com expansão de operações em águas profundas", "summary": "As seguradoras estão ajustando prêmios para instalações de energia offshore à medida que a exploração em águas profundas atinge novas profundidades, aumentando a complexidade da avaliação de riscos." },
+    "ar": { "title": "ارتفاع أقساط تأمين الطاقة البحرية مع توسع عمليات المياه العميقة", "summary": "تقوم شركات التأمين بتعديل أقساط منشآت الطاقة البحرية مع وصول استكشاف المياه العميقة إلى أعماق جديدة، مما يزيد من تعقيد تقييم المخاطر للمنصات وسفن الدعم." }
+  },
+  {
+    "id": 4,
+    "date": "2026-06-19",
+    "en": { "title": "Lloyd's Market Introduces Parametric Insurance for Shipping Route Disruptions", "summary": "Lloyd's of London syndicates have launched parametric insurance products that automatically trigger payouts when shipping routes are disrupted by geopolitical events or natural disasters." },
+    "es": { "title": "El mercado de Lloyd's introduce seguros paramétricos para disrupciones de rutas marítimas", "summary": "Los sindicatos de Lloyd's de Londres han lanzado productos de seguros paramétricos que activan pagos automáticamente cuando las rutas marítimas se ven interrumpidas por eventos geopolíticos o desastres naturales." },
+    "zh": { "title": "劳合社市场推出航运路线中断参数化保险", "summary": "伦敦劳合社辛迪加推出了参数化保险产品，当航运路线因地缘政治事件或自然灾害中断时自动触发赔付。" },
+    "ru": { "title": "Рынок Lloyd's представляет параметрическое страхование от нарушений судоходных маршрутов", "summary": "Синдикаты Lloyd's of London запустили параметрические страховые продукты, автоматически выплачивающие возмещение при нарушении судоходных маршрутов из-за геополитических событий или природных катастроф." },
+    "pt": { "title": "Mercado Lloyd's introduz seguro paramétrico para interrupções de rotas marítimas", "summary": "Os sindicatos do Lloyd's de Londres lançaram produtos de seguro paramétrico que acionam pagamentos automaticamente quando rotas marítimas são interrompidas por eventos geopolíticos ou desastres naturais." },
+    "ar": { "title": "سوق لويدز يقدم التأمين البارامتري لاضطرابات مسارات الشحن", "summary": "أطلقت نقابات لويدز في لندن منتجات تأمين بارامترية تُفعّل المدفوعات تلقائياً عندما تتعطل مسارات الشحن بسبب أحداث جيوسياسية أو كوارث طبيعية." }
+  },
+  {
+    "id": 5,
+    "date": "2026-06-16",
+    "en": { "title": "DNV Updates Classification Rules for LNG Carrier Insurance Requirements", "summary": "DNV has released updated classification rules that will impact insurance requirements for LNG carriers, emphasizing enhanced safety systems and environmental compliance standards." },
+    "es": { "title": "DNV actualiza reglas de clasificación para requisitos de seguros de buques GNL", "summary": "DNV ha publicado reglas de clasificación actualizadas que impactarán los requisitos de seguros para buques de GNL, enfatizando sistemas de seguridad mejorados y estándares de cumplimiento ambiental." },
+    "zh": { "title": "DNV更新LNG运输船保险要求分类规则", "summary": "DNV发布了更新的分类规则，将影响LNG运输船的保险要求，强调增强的安全系统和环境合规标准。" },
+    "ru": { "title": "DNV обновляет классификационные правила для страхования СПГ-танкеров", "summary": "DNV опубликовала обновлённые классификационные правила, которые повлияют на требования к страхованию СПГ-танкеров, с акцентом на улучшенные системы безопасности и стандарты экологического соответствия." },
+    "pt": { "title": "DNV atualiza regras de classificação para requisitos de seguros de navios GNL", "summary": "A DNV publicou regras de classificação atualizadas que impactarão os requisitos de seguro para navios de GNL, enfatizando sistemas de segurança aprimorados e padrões de conformidade ambiental." },
+    "ar": { "title": "DNV تحدث قواعد التصنيف لمتطلبات تأمين ناقلات الغاز الطبيعي المسال", "summary": "أصدرت DNV قواعد تصنيف محدثة ستؤثر على متطلبات التأمين لناقلات الغاز الطبيعي المسال، مع التركيز على أنظمة السلامة المعززة ومعايير الامتثال البيئي." }
+  },
+  {
+    "id": 6,
+    "date": "2026-06-13",
+    "en": { "title": "Marine Cargo Insurance Claims Surge After Major Port Congestion in Southeast Asia", "summary": "A series of port congestion events across Southeast Asian ports has led to a sharp increase in marine cargo insurance claims, with delays causing spoilage and contractual penalties." },
+    "es": { "title": "Reclamaciones de seguros de carga marítima aumentan tras congestión portuaria en el sudeste asiático", "summary": "Una serie de eventos de congestión portuaria en puertos del sudeste asiático ha provocado un aumento brusco en reclamaciones de seguros de carga marítima, con retrasos causando deterioro y penalidades contractuales." },
+    "zh": { "title": "东南亚主要港口拥堵后海上货物保险索赔激增", "summary": "东南亚港口一系列拥堵事件导致海上货物保险索赔急剧增加，延误造成货物变质和合同罚款。" },
+    "ru": { "title": "Претензии по морскому грузовому страхованию резко выросли после заторов в портах Юго-Восточной Азии", "summary": "Серия заторов в портах Юго-Восточной Азии привела к резкому росту претензий по морскому грузовому страхованию из-за задержек, вызывающих порчу грузов и контрактные штрафы." },
+    "pt": { "title": "Sinistros de seguros de carga marítima disparam após congestionamento portuário no sudeste asiático", "summary": "Uma série de eventos de congestionamento portuário nos portos do sudeste asiático levou a um aumento acentuado nos sinistros de seguros de carga marítima, com atrasos causando deterioração e penalidades contratuais." },
+    "ar": { "title": "ارتفاع حاد في مطالبات تأمين البضائع البحرية بعد ازدحام كبير في موانئ جنوب شرق آسيا", "summary": "أدت سلسلة من أحداث ازدحام الموانئ في موانئ جنوب شرق آسيا إلى زيادة حادة في مطالبات تأمين البضائع البحرية، حيث تسببت التأخيرات في تلف البضائع وعقوبات تعاقدية." }
+  },
+  {
+    "id": 7,
+    "date": "2026-06-10",
+    "en": { "title": "Bureau Veritas Certifies First Hydrogen-Powered Vessel Fleet for Commercial Operations", "summary": "Bureau Veritas has completed certification of the first commercial hydrogen-powered vessel fleet, setting new benchmarks for marine insurance underwriting of green shipping assets." },
+    "es": { "title": "Bureau Veritas certifica primera flota de buques propulsados por hidrógeno para operaciones comerciales", "summary": "Bureau Veritas ha completado la certificación de la primera flota comercial de buques propulsados por hidrógeno, estableciendo nuevos estándares para la suscripción de seguros marítimos de activos de transporte verde." },
+    "zh": { "title": "法国船级社为首支氢动力商业船队颁发认证", "summary": "法国船级社已完成首支商业氢动力船队的认证，为绿色航运资产的海上保险承保设定了新标准。" },
+    "ru": { "title": "Bureau Veritas сертифицировал первый флот водородных судов для коммерческой эксплуатации", "summary": "Bureau Veritas завершил сертификацию первого коммерческого флота судов на водородном топливе, установив новые ориентиры для андеррайтинга морского страхования экологичных судоходных активов." },
+    "pt": { "title": "Bureau Veritas certifica primeira frota de embarcações a hidrogênio para operações comerciais", "summary": "O Bureau Veritas concluiu a certificação da primeira frota comercial de embarcações movidas a hidrogênio, estabelecendo novos padrões para a subscrição de seguros marítimos de ativos de transporte verde." },
+    "ar": { "title": "بيرو فيريتاس تمنح شهادة لأول أسطول سفن يعمل بالهيدروجين للعمليات التجارية", "summary": "أكملت بيرو فيريتاس اعتماد أول أسطول تجاري من السفن العاملة بالهيدروجين، مما يضع معايير جديدة لاكتتاب التأمين البحري لأصول الشحن الأخضر." }
+  },
+  {
+    "id": 8,
+    "date": "2026-06-07",
+    "en": { "title": "Cyber Risk in Maritime Sector Drives New Insurance Product Launches", "summary": "Multiple insurers have introduced specialized cyber risk policies for shipping companies following a wave of ransomware attacks targeting port management and vessel navigation systems." },
+    "es": { "title": "El riesgo cibernético en el sector marítimo impulsa nuevos productos de seguros", "summary": "Múltiples aseguradoras han introducido pólizas especializadas de riesgo cibernético para compañías navieras tras una oleada de ataques de ransomware dirigidos a sistemas de gestión portuaria y navegación de buques." },
+    "zh": { "title": "海事领域网络风险推动新保险产品推出", "summary": "在一波针对港口管理和船舶导航系统的勒索软件攻击之后，多家保险公司推出了面向航运公司的专业网络风险保单。" },
+    "ru": { "title": "Кибер-риски в морском секторе стимулируют запуск новых страховых продуктов", "summary": "Несколько страховщиков представили специализированные полисы кибер-рисков для судоходных компаний после волны атак программ-вымогателей на системы управления портами и навигации судов." },
+    "pt": { "title": "Risco cibernético no setor marítimo impulsiona lançamento de novos produtos de seguros", "summary": "Múltiplas seguradoras introduziram apólices especializadas de risco cibernético para empresas de navegação após uma onda de ataques de ransomware direcionados a sistemas de gestão portuária e navegação de embarcações." },
+    "ar": { "title": "المخاطر السيبرانية في القطاع البحري تدفع إطلاق منتجات تأمينية جديدة", "summary": "قدمت شركات تأمين متعددة وثائق متخصصة للمخاطر السيبرانية لشركات الشحن في أعقاب موجة من هجمات الفدية التي استهدفت أنظمة إدارة الموانئ وملاحة السفن." }
+  },
+  {
+    "id": 9,
+    "date": "2026-06-04",
+    "en": { "title": "Hull & Machinery Underwriters Tighten Requirements for Aging Bulk Carriers", "summary": "Major hull and machinery insurers have announced stricter survey requirements and higher premiums for bulk carriers over 20 years old, citing increased structural failure risks." },
+    "es": { "title": "Suscriptores de casco y maquinaria endurecen requisitos para buques graneleros envejecidos", "summary": "Los principales aseguradores de casco y maquinaria han anunciado requisitos de inspección más estrictos y primas más altas para graneleros de más de 20 años, citando mayores riesgos de falla estructural." },
+    "zh": { "title": "船体与机械承保人收紧老旧散货船要求", "summary": "主要船体与机械保险公司宣布对船龄超过20年的散货船实施更严格的检验要求和更高的保费，理由是结构性故障风险增加。" },
+    "ru": { "title": "Андеррайтеры каско и машин ужесточают требования к стареющим балкерам", "summary": "Крупные страховщики корпуса и механизмов объявили о более строгих требованиях к осмотру и повышении премий для балкеров старше 20 лет из-за возросших рисков структурных повреждений." },
+    "pt": { "title": "Subscritores de casco e máquinas endurecem requisitos para graneleiros envelhecidos", "summary": "Os principais seguradores de casco e máquinas anunciaram requisitos de vistoria mais rigorosos e prêmios mais altos para graneleiros com mais de 20 anos, citando riscos aumentados de falha estrutural." },
+    "ar": { "title": "متعهدو تأمين الهيكل والآلات يشددون المتطلبات لناقلات البضائع السائبة القديمة", "summary": "أعلنت شركات تأمين الهيكل والآلات الرئيسية عن متطلبات فحص أكثر صرامة وأقساط أعلى لناقلات البضائع السائبة التي يزيد عمرها عن 20 عاماً، مستشهدة بزيادة مخاطر الفشل الهيكلي." }
+  },
+  {
+    "id": 10,
+    "date": "2026-06-01",
+    "en": { "title": "International Salvage Convention Updates Impact Marine Insurance Liability Frameworks", "summary": "Recent amendments to the International Salvage Convention are reshaping how marine insurers calculate liability exposure for salvage operations, with implications for P&I club coverage terms." },
+    "es": { "title": "Actualizaciones del Convenio Internacional de Salvamento impactan marcos de responsabilidad de seguros marítimos", "summary": "Las enmiendas recientes al Convenio Internacional de Salvamento están remodelando cómo las aseguradoras marítimas calculan la exposición de responsabilidad para operaciones de salvamento, con implicaciones para los términos de cobertura de los clubes P&I." },
+    "zh": { "title": "国际救助公约更新影响海上保险责任框架", "summary": "国际救助公约的最新修正案正在重塑海上保险公司计算救助作业责任敞口的方式，对保赔协会的承保条款产生影响。" },
+    "ru": { "title": "Обновления Международной конвенции о спасении влияют на рамки ответственности морского страхования", "summary": "Недавние поправки к Международной конвенции о спасении меняют подход морских страховщиков к расчёту ответственности за спасательные операции, влияя на условия покрытия клубов P&I." },
+    "pt": { "title": "Atualizações da Convenção Internacional de Salvamento impactam estruturas de responsabilidade de seguros marítimos", "summary": "As emendas recentes à Convenção Internacional de Salvamento estão remodelando como as seguradoras marítimas calculam a exposição de responsabilidade para operações de salvamento, com implicações para os termos de cobertura dos clubes P&I." },
+    "ar": { "title": "تحديثات اتفاقية الإنقاذ الدولية تؤثر على أطر المسؤولية في التأمين البحري", "summary": "تعمل التعديلات الأخيرة على اتفاقية الإنقاذ الدولية على إعادة تشكيل كيفية حساب شركات التأمين البحري لتعرض المسؤولية عن عمليات الإنقاذ، مع آثار على شروط تغطية نوادي الحماية والتعويض." }
+  }
+]

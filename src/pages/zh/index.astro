@@ -1,66 +1,77 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import MarineQuiz from '../../components/MarineQuiz.astro';
+import WeeklyNews from '../../components/WeeklyNews.astro';
 ---
 
 <BaseLayout
-  title="Maryna Risk & Insurance | 结构化保险与船舶风险保障"
-  description="为船舶、离岸注册和国际B2B运营提供结构化保险和风险保障解决方案。在基里巴斯共和国注册。"
+  title="Maryna Risk & Insurance | 船舶与离岸结构化海上保险"
+  description="为船舶、离岸注册和国际资产保护提供B2B保险解决方案。来自Maryna Risk & Insurance的结构化海上保险。"
   lang="zh"
 >
   <Fragment slot="logo">Maryna Risk</Fragment>
   <Fragment slot="footer-name">Maryna Risk & Insurance – 在基里巴斯共和国注册</Fragment>
 
   <section class="hero">
-    <h1>Maryna Risk & Insurance</h1>
-    <p class="tagline">结构化保险与风险保障</p>
-    <p>为船舶、离岸注册和国际资产保护提供解决方案。仅限B2B。</p>
+    <h1>Maryna Risk & Insurance<span class="gradient-text">结构化海上保险</span></h1>
+    <p class="lead">为船舶、离岸注册和国际资产保护提供B2B保险解决方案。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="stat-value">仅限B2B</div><div class="stat-label">商业客户</div></div>
+      <div class="hero-stat"><div class="stat-value">全球覆盖</div><div class="stat-label">多司法管辖</div></div>
+      <div class="hero-stat"><div class="stat-value">合作网络</div><div class="stat-label">保赔协会与保险公司</div></div>
+    </div>
   </section>
 
-  <div class="ad-slot">广告位 - Google AdSense</div>
+  <div class="content-area">
+    <div class="ad-slot">广告位 - Google AdSense</div>
 
-  <div class="card-grid">
-    <article class="card">
-      <h2>海事专注</h2>
-      <p>商业船舶和海事运营保险。涵盖商业船舶、工作艇、服务艇、海上支援船和注册商用游艇。</p>
-    </article>
-    <article class="card">
-      <h2>离岸就绪</h2>
-      <p>支持离岸注册和合规保障结构。船体与机械、通过合作伙伴提供的保赔（P&I）以及运营风险保障。</p>
-    </article>
-    <article class="card">
-      <h2>国际范围</h2>
-      <p>为跨司法管辖区运营的资产和设备提供保障。复杂跨境运营的工业和国际资产保险。</p>
-    </article>
-    <article class="card">
-      <h2>仅限B2B</h2>
-      <p>专为企业和运营商设计的解决方案。基于合作伙伴的结构，不提供个人或消费者产品。</p>
-    </article>
-    <article class="card">
-      <h2>承保资产</h2>
-      <p>商业船舶、工作艇、服务艇、海上支援船、注册商用游艇和国际运营的工业设备。</p>
-    </article>
-    <article class="card">
-      <h2>风险管理</h2>
-      <p>全面的风险评估和结构化保障，专为海事和工业领域的复杂非个人风险而设计。</p>
-    </article>
+    <MarineQuiz lang="zh" />
+
+    <div class="card-grid">
+      <article class="card">
+        <span class="card-icon">🚢</span>
+        <h2>海事专注</h2>
+        <p>商业船舶和海事运营保险。涵盖商业船舶、工作艇、服务艇、海上支援船和注册商用游艇。</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">⚓</span>
+        <h2>离岸就绪</h2>
+        <p>支持离岸注册和合规保障结构。船体与机械、通过合作伙伴提供的保赔（P&I）以及运营风险保障。</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🌊</span>
+        <h2>国际范围</h2>
+        <p>为跨司法管辖区运营的资产和设备提供保障。复杂跨境运营的工业和国际资产保险。</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🏢</span>
+        <h2>仅限B2B</h2>
+        <p>专为企业和运营商设计的解决方案。基于合作伙伴的结构，不提供个人或消费者产品。</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">📋</span>
+        <h2>承保资产</h2>
+        <p>商业船舶、工作艇、服务艇、海上支援船、注册商用游艇和国际运营的工业设备。</p>
+      </article>
+      <article class="card">
+        <span class="card-icon">🛡️</span>
+        <h2>风险管理</h2>
+        <p>全面的风险评估和结构化保障，专为海事和工业领域的复杂非个人风险而设计。</p>
+      </article>
+    </div>
+
+    <div class="ad-slot">广告位 - Google AdSense</div>
+
+    <section class="registration-info">
+      <h2>注册与法律信息</h2>
+      <p><strong>注册号：</strong> CP-000030</p>
+      <p><strong>许可证号：</strong> KBN-80-000001</p>
+      <p><strong>注册办公室：</strong> Central Park, Tarawa, 基里巴斯共和国</p>
+      <p><strong>地址：</strong> Malecon, Manzanillo, 古巴</p>
+    </section>
+
+    <WeeklyNews lang="zh" />
+
+    <div class="ad-slot">广告位 - Google AdSense</div>
   </div>
-
-  <div class="ad-slot">广告位 - Google AdSense</div>
-
-  <section class="registration-info">
-    <h2>注册与法律信息</h2>
-    <p><strong>注册号：</strong> CP-000030</p>
-    <p><strong>许可证号：</strong> KBN-80-000001</p>
-    <p><strong>注册办公室：</strong> Central Park, Tarawa, 基里巴斯共和国</p>
-    <p><strong>地址：</strong> Malecon, Manzanillo, 古巴</p>
-  </section>
-
-  <div class="ad-slot">广告位 - Google AdSense</div>
 </BaseLayout>
-
-<style>
-  .tagline { font-size: 1.4rem; font-weight: 600; opacity: 1; margin-bottom: 8px; }
-  .registration-info { background: white; border-radius: 8px; padding: 32px; margin-top: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-align: center; }
-  .registration-info h2 { margin-bottom: 16px; color: #1a1a2e; }
-  .registration-info p { margin: 6px 0; color: #555; }
-</style>

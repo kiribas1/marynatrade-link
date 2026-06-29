@@ -1,0 +1,92 @@
+---
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+import newsData from '../data/weekly-news.json';
+
+const titles: Record<string, string> = {
+  en: "Maritime Industry News",
+  es: "Noticias de la Industria Marítima",
+  zh: "海事行业新闻",
+  ru: "Новости морской отрасли",
+  pt: "Notícias da Indústria Marítima",
+  ar: "أخبار الصناعة البحرية"
+};
+
+const sectionTitle = titles[lang] || titles.en;
+---
+
+<section class="news-section">
+  <h2>{sectionTitle}</h2>
+  <div class="news-grid">
+    {newsData.map((item: any) => {
+      const content = item[lang] || item.en;
+      return (
+        <article class="news-card">
+          <time class="news-date">{item.date}</time>
+          <h3>{content.title}</h3>
+          <p>{content.summary}</p>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<style>
+  .news-section {
+    margin: 40px 0;
+    padding: 32px;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 16px;
+  }
+  .news-section h2 {
+    font-size: 1.5rem;
+    color: #93c5fd;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .news-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+  .news-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+  }
+  .news-date {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .news-card h3 {
+    font-size: 1rem;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .news-card p {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+  @media (max-width: 640px) {
+    .news-grid { grid-template-columns: 1fr; }
+    .news-section { padding: 20px; }
+  }
+</style>
